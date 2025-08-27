@@ -5,200 +5,39 @@ import MetricCard from '@/components/MetricCard';
 import PageTypeChart from '@/components/PageTypeChart';
 import GeographicChart from '@/components/GeographicChart';
 import StaffRangeChart from '@/components/StaffRangeChart';
-import { LinkedInPageStatistics } from '@/types/linkedin';
-
-// Updated sample data from the actual LinkedIn API response
-const sampleData: LinkedInPageStatistics = {
-  "paging": {
-    "start": 0,
-    "count": 10,
-    "links": []
-  },
-  "elements": [
-    {
-      "pageStatisticsByIndustryV2": [
-        {
-          "industryV2": "urn:li:industry:4",
-          "pageStatistics": {
-            "views": {
-              "allPageViews": {
-                "pageViews": 17
-              }
-            }
-          }
-        }
-      ],
-      "pageStatisticsBySeniority": [
-        {
-          "pageStatistics": {
-            "views": {
-              "mobileProductsPageViews": { "pageViews": 0 },
-              "allDesktopPageViews": { "pageViews": 21 },
-              "insightsPageViews": { "pageViews": 0 },
-              "mobileAboutPageViews": { "pageViews": 0 },
-              "allMobilePageViews": { "pageViews": 0 },
-              "productsPageViews": { "pageViews": 0 },
-              "desktopProductsPageViews": { "pageViews": 0 },
-              "jobsPageViews": { "pageViews": 0 },
-              "peoplePageViews": { "pageViews": 0 },
-              "overviewPageViews": { "pageViews": 21 },
-              "mobileOverviewPageViews": { "pageViews": 0 },
-              "lifeAtPageViews": { "pageViews": 0 },
-              "desktopOverviewPageViews": { "pageViews": 21 },
-              "mobileCareersPageViews": { "pageViews": 0 },
-              "allPageViews": { "pageViews": 21 },
-              "careersPageViews": { "pageViews": 0 },
-              "mobileJobsPageViews": { "pageViews": 0 },
-              "mobileLifeAtPageViews": { "pageViews": 0 },
-              "desktopJobsPageViews": { "pageViews": 0 },
-              "desktopPeoplePageViews": { "pageViews": 0 },
-              "aboutPageViews": { "pageViews": 0 },
-              "desktopAboutPageViews": { "pageViews": 0 },
-              "mobilePeoplePageViews": { "pageViews": 0 },
-              "desktopCareersPageViews": { "pageViews": 0 },
-              "desktopInsightsPageViews": { "pageViews": 0 },
-              "desktopLifeAtPageViews": { "pageViews": 0 },
-              "mobileInsightsPageViews": { "pageViews": 0 }
-            }
-          },
-          "seniority": "urn:li:seniority:3"
-        }
-      ],
-      "organization": "urn:li:organization:107813090",
-      "pageStatisticsByGeoCountry": [
-        {
-          "geo": "urn:li:geo:106215326",
-          "pageStatistics": {
-            "views": {
-              "allPageViews": {
-                "pageViews": 21
-              }
-            }
-          }
-        }
-      ],
-      "pageStatisticsByTargetedContent": [],
-      "totalPageStatistics": {
-        "views": {
-          "mobileProductsPageViews": { "pageViews": 0 },
-          "allDesktopPageViews": { "pageViews": 22 },
-          "insightsPageViews": { "pageViews": 0 },
-          "mobileAboutPageViews": { "pageViews": 0 },
-          "allMobilePageViews": { "pageViews": 0 },
-          "productsPageViews": { "pageViews": 0 },
-          "desktopProductsPageViews": { "pageViews": 0 },
-          "jobsPageViews": { "pageViews": 0 },
-          "peoplePageViews": { "pageViews": 1 },
-          "overviewPageViews": { "pageViews": 21 },
-          "mobileOverviewPageViews": { "pageViews": 0 },
-          "lifeAtPageViews": { "pageViews": 0 },
-          "desktopOverviewPageViews": { "pageViews": 21 },
-          "mobileCareersPageViews": { "pageViews": 0 },
-          "allPageViews": { "pageViews": 22 },
-          "careersPageViews": { "pageViews": 0 },
-          "mobileJobsPageViews": { "pageViews": 0 },
-          "mobileLifeAtPageViews": { "pageViews": 0 },
-          "desktopJobsPageViews": { "pageViews": 0 },
-          "desktopPeoplePageViews": { "pageViews": 1 },
-          "aboutPageViews": { "pageViews": 0 },
-          "desktopAboutPageViews": { "pageViews": 0 },
-          "mobilePeoplePageViews": { "pageViews": 0 },
-          "desktopCareersPageViews": { "pageViews": 0 },
-          "desktopInsightsPageViews": { "pageViews": 0 },
-          "desktopLifeAtPageViews": { "pageViews": 0 },
-          "mobileInsightsPageViews": { "pageViews": 0 }
-        }
-      },
-      "pageStatisticsByStaffCountRange": [
-        {
-          "staffCountRange": "SIZE_51_TO_200",
-          "pageStatistics": {
-            "views": {
-              "mobileProductsPageViews": { "pageViews": 0 },
-              "allDesktopPageViews": { "pageViews": 15 },
-              "insightsPageViews": { "pageViews": 0 },
-              "mobileAboutPageViews": { "pageViews": 0 },
-              "allMobilePageViews": { "pageViews": 0 },
-              "productsPageViews": { "pageViews": 0 },
-              "desktopProductsPageViews": { "pageViews": 0 },
-              "jobsPageViews": { "pageViews": 0 },
-              "peoplePageViews": { "pageViews": 0 },
-              "overviewPageViews": { "pageViews": 15 },
-              "mobileOverviewPageViews": { "pageViews": 0 },
-              "lifeAtPageViews": { "pageViews": 0 },
-              "desktopOverviewPageViews": { "pageViews": 15 },
-              "mobileCareersPageViews": { "pageViews": 0 },
-              "allPageViews": { "pageViews": 15 },
-              "careersPageViews": { "pageViews": 0 },
-              "mobileJobsPageViews": { "pageViews": 0 },
-              "mobileLifeAtPageViews": { "pageViews": 0 },
-              "desktopJobsPageViews": { "pageViews": 0 },
-              "desktopPeoplePageViews": { "pageViews": 0 },
-              "aboutPageViews": { "pageViews": 0 },
-              "desktopAboutPageViews": { "pageViews": 0 },
-              "mobilePeoplePageViews": { "pageViews": 0 },
-              "desktopCareersPageViews": { "pageViews": 0 },
-              "desktopInsightsPageViews": { "pageViews": 0 },
-              "desktopLifeAtPageViews": { "pageViews": 0 },
-              "mobileInsightsPageViews": { "pageViews": 0 }
-            }
-          }
-        }
-      ],
-      "pageStatisticsByFunction": [
-        {
-          "pageStatistics": {
-            "views": {
-              "mobileProductsPageViews": { "pageViews": 0 },
-              "allDesktopPageViews": { "pageViews": 21 },
-              "insightsPageViews": { "pageViews": 0 },
-              "mobileAboutPageViews": { "pageViews": 0 },
-              "allMobilePageViews": { "pageViews": 0 },
-              "productsPageViews": { "pageViews": 0 },
-              "desktopProductsPageViews": { "pageViews": 0 },
-              "jobsPageViews": { "pageViews": 0 },
-              "peoplePageViews": { "pageViews": 0 },
-              "overviewPageViews": { "pageViews": 21 },
-              "mobileOverviewPageViews": { "pageViews": 0 },
-              "lifeAtPageViews": { "pageViews": 0 },
-              "desktopOverviewPageViews": { "pageViews": 21 },
-              "mobileCareersPageViews": { "pageViews": 0 },
-              "allPageViews": { "pageViews": 21 },
-              "careersPageViews": { "pageViews": 0 },
-              "mobileJobsPageViews": { "pageViews": 0 },
-              "mobileLifeAtPageViews": { "pageViews": 0 },
-              "desktopJobsPageViews": { "pageViews": 0 },
-              "desktopPeoplePageViews": { "pageViews": 0 },
-              "aboutPageViews": { "pageViews": 0 },
-              "desktopAboutPageViews": { "pageViews": 0 },
-              "mobilePeoplePageViews": { "pageViews": 0 },
-              "desktopCareersPageViews": { "pageViews": 0 },
-              "desktopInsightsPageViews": { "pageViews": 0 },
-              "desktopLifeAtPageViews": { "pageViews": 0 },
-              "mobileInsightsPageViews": { "pageViews": 0 }
-            }
-          },
-          "function": "urn:li:function:8"
-        }
-      ],
-      "pageStatisticsByGeo": [
-        {
-          "geo": "urn:li:geo:101094033",
-          "pageStatistics": {
-            "views": {
-              "allPageViews": {
-                "pageViews": 16
-              }
-            }
-          }
-        }
-      ]
-    }
-  ]
-};
+import { useLinkedInData } from '@/hooks/useLinkedInData';
 
 const Index = () => {
-  const data = sampleData.elements[0];
+  const { data: linkedInData, isLoading, error } = useLinkedInData();
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center mx-auto mb-4">
+            <Building2 className="w-6 h-6 text-white animate-pulse" />
+          </div>
+          <p className="text-muted-foreground">Loading LinkedIn analytics...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !linkedInData) {
+    console.log('Error loading data or no data available:', error);
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center mx-auto mb-4">
+            <Building2 className="w-6 h-6 text-white" />
+          </div>
+          <p className="text-muted-foreground">Failed to load LinkedIn analytics</p>
+        </div>
+      </div>
+    );
+  }
+
+  const data = linkedInData.elements[0];
   const totalViews = data.totalPageStatistics.views;
   
   return (
@@ -207,7 +46,7 @@ const Index = () => {
       <div className="border-b border-border bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-info flex items-center justify-center">
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center">
               <Building2 className="w-6 h-6 text-white" />
             </div>
             <div>
