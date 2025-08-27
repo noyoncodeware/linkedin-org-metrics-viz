@@ -195,8 +195,20 @@ const sampleData: LinkedInPageStatistics = {
 const fetchLinkedInData = async (): Promise<LinkedInPageStatistics> => {
   console.log('Fetching LinkedIn data from API...');
   
+  // Get domain from query string
+  const urlParams = new URLSearchParams(window.location.search);
+  const domain = urlParams.get('domain');
+  
+  if (!domain) {
+    console.log('No domain in query string, using sample data');
+    return sampleData;
+  }
+  
+  const apiUrl = `https://${domain}/business/linkedin-page-insights`;
+  console.log('API URL:', apiUrl);
+  
   try {
-    const response = await fetch('https://cwrndadmin.idesk360.com/business/linkedin-page-insights');
+    const response = await fetch(apiUrl);
     
     if (!response.ok) {
       console.log('API response not ok, using sample data');
