@@ -128,6 +128,6 @@
   }
   
   .dashboard-header {
-    @apply text-3xl font-bold bg-gradient-to-r from-primary to-info bg-clip-text text-transparent;
+    @apply text-3xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent;
   }
 }
