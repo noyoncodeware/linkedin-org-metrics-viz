@@ -36,6 +36,29 @@ export interface LinkedInPageStatistics {
         };
       };
     }>;
+    pageStatisticsBySeniority: Array<{
+      seniority: string;
+      pageStatistics: {
+        views: PageViews;
+      };
+    }>;
+    pageStatisticsByFunction: Array<{
+      function: string;
+      pageStatistics: {
+        views: PageViews;
+      };
+    }>;
+    pageStatisticsByGeo: Array<{
+      geo: string;
+      pageStatistics: {
+        views: {
+          allPageViews: {
+            pageViews: number;
+          };
+        };
+      };
+    }>;
+    pageStatisticsByTargetedContent: any[];
   }>;
 }
 
@@ -51,4 +74,20 @@ export interface PageViews {
   productsPageViews: { pageViews: number };
   lifeAtPageViews: { pageViews: number };
   insightsPageViews: { pageViews: number };
+  mobileProductsPageViews: { pageViews: number };
+  mobileAboutPageViews: { pageViews: number };
+  mobileOverviewPageViews: { pageViews: number };
+  mobileCareersPageViews: { pageViews: number };
+  mobileJobsPageViews: { pageViews: number };
+  mobileLifeAtPageViews: { pageViews: number };
+  mobileInsightsPageViews: { pageViews: number };
+  mobilePeoplePageViews: { pageViews: number };
+  desktopProductsPageViews: { pageViews: number };
+  desktopAboutPageViews: { pageViews: number };
+  desktopOverviewPageViews: { pageViews: number };
+  desktopCareersPageViews: { pageViews: number };
+  desktopJobsPageViews: { pageViews: number };
+  desktopLifeAtPageViews: { pageViews: number };
+  desktopInsightsPageViews: { pageViews: number };
+  desktopPeoplePageViews: { pageViews: number };
 }

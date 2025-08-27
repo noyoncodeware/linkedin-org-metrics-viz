@@ -2,16 +2,13 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Card } from '@/components/ui/card';
+import { PageViews } from '@/types/linkedin';
 
 interface StaffRangeChartProps {
   data: Array<{
     staffCountRange: string;
     pageStatistics: {
-      views: {
-        allPageViews: {
-          pageViews: number;
-        };
-      };
+      views: PageViews;
     };
   }>;
 }
